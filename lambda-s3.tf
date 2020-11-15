@@ -10,3 +10,7 @@ resource "aws_s3_bucket" "lambda" {
 output "s3_bucket_lambda_id" {
   value = aws_s3_bucket.lambda.id
 }
+
+output "s3_bucket_lambda_arn" {
+  value = aws_s3_bucket.lambda.arn
+}
