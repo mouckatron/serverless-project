@@ -62,8 +62,8 @@ resource "aws_iam_role_policy" "codepipeline" {
       "Resource": [
         "${aws_s3_bucket.frontend.arn}",
         "${aws_s3_bucket.frontend.arn}/*",
-        "${aws_s3_bucket.backend.arn}",
-        "${aws_s3_bucket.backend.arn}/*"
+        "${aws_s3_bucket.lambda.arn}",
+        "${aws_s3_bucket.lambda.arn}/*"
       ]
     },
     {
