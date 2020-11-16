@@ -1,6 +1,6 @@
 
 resource "aws_lambda_function" "lambda" {
-  count = var.lambda_functions
+  count = length(var.lambda_functions)
 
   function_name = "${var.appname}-${var.lambda_functions[count.index].name}"
 
