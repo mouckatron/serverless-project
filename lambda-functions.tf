@@ -1,14 +1,14 @@
 
 resource "aws_lambda_function" "lambda" {
-  for_each = toset(var.lambda_functions)
+  count = var.lambda_functions
 
-  function_name = "${var.appname}-${each.value.name}"
+  function_name = "${var.appname}-${var.lambda_functions[count.index].name}"
 
   s3_bucket = aws_s3_bucket.lambda.id
-  s3_key    = "${each.value.name}.zip"
+  s3_key    = "${var.lambda_functions[count.index].name}.zip"
 
-  handler = each.value.name
-  runtime = each.value.runtime
+  handler = var.lambda_functions[count.index].name
+  runtime = var.lambda_functions[count.index].runtime
 
   role = aws_iam_role.lambda.arn
 
