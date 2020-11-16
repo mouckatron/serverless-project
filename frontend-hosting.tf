@@ -9,7 +9,7 @@ resource "aws_s3_bucket" "frontend" {
 }
 
 data "template_file" "frontend_policy" {
-  template = file("frontend-hosting-bucket-policy.json")
+  template = file("${path.module}/frontend-hosting-bucket-policy.json")
   vars = {
     s3_bucket          = aws_s3_bucket.frontend.id
     cloudfront_oai_arn = aws_cloudfront_origin_access_identity.frontend.iam_arn

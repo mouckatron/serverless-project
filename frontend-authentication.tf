@@ -30,7 +30,7 @@ resource "aws_cognito_user_pool_client" "frontend" {
 }
 
 data "template_file" "cognito_frontend" {
-  template = file("frontend-authentication-output-template.ts")
+  template = file("${path.module}/frontend-authentication-output-template.ts")
   vars = {
     region    = data.aws_region.current.name
     pool_id   = aws_cognito_user_pool.frontend.id
