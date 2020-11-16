@@ -24,7 +24,4 @@ resource "aws_iam_role_policy_attachment" "role_attach" {
   name       = "policy-${var.appname}"
   roles      = [aws_iam_role.lambda.id]
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-  groups = [
-    "LambdaFunctions"
-  ]
 }
