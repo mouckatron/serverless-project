@@ -4,7 +4,7 @@ resource "aws_lambda_function" "lambda" {
 
   function_name = "${var.appname}-${each.value.name}"
 
-  s3_bucket = aws_s3_bucket.backend.id
+  s3_bucket = aws_s3_bucket.lambda.id
   s3_key    = "${each.value.name}.zip"
 
   handler = each.value.name
