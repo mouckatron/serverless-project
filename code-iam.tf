@@ -62,8 +62,8 @@ resource "aws_iam_role_policy" "codepipeline" {
       "Resource": [
         "${aws_s3_bucket.frontend.arn}",
         "${aws_s3_bucket.frontend.arn}/*",
-        "${module.serverless-project.s3_bucket_lambda_arn}",
-        "${module.serverless-project.s3_bucket_lambda_arn}/*"
+        "${aws_s3_bucket.backend.arn}",
+        "${aws_s3_bucket.backend.arn}/*"
       ]
     },
     {
@@ -110,39 +110,4 @@ resource "aws_iam_role_policy" "codepipeline" {
   ]
 }
 EOF
-}
-
-resource "aws_iam_role" "codepipeline" {
-  name               = "${var.appname}-codepipeline"
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "codepipeline.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    },
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "codebuild.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    },
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "events.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-EOF
-  tags = {
-    appname = var.appname
-  }
 }
