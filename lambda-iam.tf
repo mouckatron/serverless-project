@@ -19,6 +19,13 @@ EOF
 
 }
 
+output "aws_iam_role_lambda_arn" {
+  value = aws_iam_role.lambda.arn
+}
+
+output "aws_iam_role_lambda_id" {
+  value = aws_iam_role.lambda.id
+}
 
 resource "aws_iam_role_policy_attachment" "role_attach" {
   role       = aws_iam_role.lambda.id
