@@ -190,7 +190,7 @@ resource "aws_codepipeline" "lambdas" {
       version         = "1"
       input_artifacts = ["build_output"]
       configuration = {
-        BucketName = aws_s3_bucket.backend.id
+        BucketName = aws_s3_bucket.lambda.id
         Extract    = true
       }
     }
