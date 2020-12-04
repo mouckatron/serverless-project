@@ -167,31 +167,14 @@ resource "aws_codepipeline" "lambdas" {
   stage {
     name = "Build"
     action {
-      name             = "Build"
-      category         = "Build"
-      owner            = "AWS"
-      provider         = "CodeBuild"
-      version          = "1"
-      input_artifacts  = ["source_output"]
-      output_artifacts = ["build_output"]
+      name            = "Build"
+      category        = "Build"
+      owner           = "AWS"
+      provider        = "CodeBuild"
+      version         = "1"
+      input_artifacts = ["source_output"]
       configuration = {
         ProjectName = "${var.appname}-lambdas"
-      }
-    }
-  }
-
-  stage {
-    name = "Deploy"
-    action {
-      name            = "Deploy"
-      category        = "Deploy"
-      owner           = "AWS"
-      provider        = "S3"
-      version         = "1"
-      input_artifacts = ["build_output"]
-      configuration = {
-        BucketName = aws_s3_bucket.lambda.id
-        Extract    = true
       }
     }
   }
