@@ -9,7 +9,7 @@ resource "aws_api_gateway_authorizer" "main" {
   name          = "${var.appname}-cognito-authorizer"
   type          = "COGNITO_USER_POOLS"
   rest_api_id   = aws_api_gateway_rest_api.main.id
-  provider_arns = aws_cognito_user_pool.frontend.arn
+  provider_arns = toset([aws_cognito_user_pool.frontend.arn])
 }
 
 resource "aws_api_gateway_resource" "lambdas" {
