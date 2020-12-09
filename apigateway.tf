@@ -34,10 +34,6 @@ resource "aws_api_gateway_method" "lambdas-any" {
   request_parameters = {
     "method.request.path.proxy" = true
   }
-
-  tags = {
-    appname = var.appname
-  }
 }
 
 resource "aws_api_gateway_integration" "lambdas" {
@@ -75,18 +71,10 @@ resource "aws_api_gateway_stage" "production" {
   stage_name    = "production"
   rest_api_id   = aws_api_gateway_rest_api.main.id
   deployment_id = aws_api_gateway_deployment.production.id
-
-  tags = {
-    appname = var.appname
-  }
 }
 
 resource "aws_api_gateway_stage" "beta" {
   stage_name    = "beta"
   rest_api_id   = aws_api_gateway_rest_api.main.id
   deployment_id = aws_api_gateway_deployment.beta.id
-
-  tags = {
-    appname = var.appname
-  }
 }
