@@ -20,9 +20,6 @@ resource "aws_api_gateway_resource" "lambdas" {
 
   path_part = var.lambda_functions[count.index].name
 
-  tags = {
-    appname = var.appname
-  }
 }
 
 resource "aws_api_gateway_method" "lambdas-any" {
