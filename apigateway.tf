@@ -57,6 +57,21 @@ resource "aws_api_gateway_integration" "lambdas" {
 resource "aws_api_gateway_deployment" "production" {
   stage_name  = "production"
   rest_api_id = aws_api_gateway_rest_api.main.id
+
+  depends_on = [aws_api_gateway_integration.lambdas]
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_api_gateway_deployment" "beta" {
+  stage_name  = "beta"
+  rest_api_id = aws_api_gateway_rest_api.main.id
+
+  depends_on = [aws_api_gateway_integration.lambdas]
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_api_gateway_stage" "production" {
