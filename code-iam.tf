@@ -107,7 +107,8 @@ resource "aws_iam_role_policy" "codepipeline" {
         "codepipeline:StartPipelineExecution"
       ],
       "Resource": [
-        "${aws_codepipeline.frontend.arn}"
+        "${aws_codepipeline.frontend.arn}",
+        "${aws_codepipeline.backend.arn}"
       ]
     },
     {
